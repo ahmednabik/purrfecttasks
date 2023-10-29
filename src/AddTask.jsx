@@ -25,6 +25,7 @@ export default function AddTask({ open, setOpen, todos, setTodos, projects }) {
       labels: [labels],
       priority: priority,
       comments: comments,
+      completed: false,
     };
     console.log([...todos, newTodo]);
     setTodos([...todos, newTodo]);

@@ -19,6 +19,7 @@ function App() {
       labels: ["programming, personal"],
       priority: 1,
       comments: "",
+      completed: false,
     },
     {
       id: 2,
@@ -28,6 +29,7 @@ function App() {
       labels: ["programming, personal"],
       priority: "2",
       comments: "",
+      completed: false,
     },
     {
       id: 3,
@@ -37,6 +39,7 @@ function App() {
       labels: ["programming, personal"],
       priority: 1,
       comments: "",
+      completed: false,
     },
     {
       id: 4,
@@ -46,6 +49,7 @@ function App() {
       labels: ["programming, personal"],
       priority: 3,
       comments: "",
+      completed: false,
     },
   ]);
   const [projects, setProjects] = useState([
