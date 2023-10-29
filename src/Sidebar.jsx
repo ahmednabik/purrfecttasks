@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import {
   XMarkIcon,
@@ -9,6 +9,8 @@ import {
   InboxIcon,
   UsersIcon,
   ClockIcon,
+  BellIcon,
+  BookmarkIcon,
 } from "@heroicons/react/24/outline";
 const primaryNav = [
   { name: "Inbox", href: "#", icon: InboxIcon, current: true },
@@ -18,17 +20,19 @@ const primaryNav = [
   { name: "Reports", href: "#", icon: ChartBarIcon, current: false },
 ];
 
-const secondaryNav = [
-  { name: "Fitness", href: "#", icon: HomeIcon, current: false },
-  { name: "Relationships", href: "#", icon: UsersIcon, current: false },
-  { name: "Groceries", href: "#", icon: FolderIcon, current: false },
-  { name: "Appointments", href: "#", icon: CalendarIcon, current: false },
-];
-
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
-function Sidebar({ sidebarOpen, setSidebarOpen }) {
+
+function Sidebar({ sidebarOpen, setSidebarOpen, projects, setProjects }) {
+  const [newProject, setNewProject] = useState("");
+
+  function handleNewProject(e) {
+    e.preventDefault();
+    const x = { name: newProject, href: "#", current: false };
+    setProjects([...projects, x]);
+    setNewProject("");
+  }
   return (
     <div>
       {/* Mobile Sidebar */}
@@ -166,8 +170,8 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
             </nav>
 
             <nav className="flex-1 space-y-1 px-2 pb-4">
-              <h3 className="m-4">Workspace</h3>
-              {secondaryNav.map((item) => (
+              <h3 className="m-2 text-sm font-bold text-gray-600">PROJECTS</h3>
+              {projects.map((item) => (
                 <a
                   key={item.name}
                   href={item.href}
@@ -178,7 +182,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                     "group flex items-center px-2 py-2 text-sm font-medium rounded-md"
                   )}
                 >
-                  <item.icon
+                  <BookmarkIcon
                     className={classNames(
                       item.current
                         ? "text-gray-500"
@@ -190,6 +194,15 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                   {item.name}
                 </a>
               ))}
+              <form onSubmit={(e) => handleNewProject(e)}>
+                <input
+                  type="text"
+                  className="rounded-md ml-2 focus-within:border-purr-primary-color border-gray-100 text-gray-100 focus-within:text-gray-700 focus:ring-0"
+                  value={newProject}
+                  onChange={(e) => setNewProject(e.target.value)}
+                  placeholder="Add Project"
+                />
+              </form>
             </nav>
           </div>
         </div>

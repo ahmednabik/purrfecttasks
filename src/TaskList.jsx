@@ -2,9 +2,9 @@ import dayjs from "dayjs";
 import { ClockIcon, TagIcon } from "@heroicons/react/24/outline";
 export default function TaskList({ todo }) {
   const priorityClass =
-    todo.priority === 1
+    todo.priority === "1"
       ? "border-red-600 bg-red-100"
-      : todo.priority === 2
+      : todo.priority === "2"
       ? "border-orange-500 bg-orange-100"
       : "border-gray-500 bg-gray-100";
 

@@ -1,0 +1,3 @@
+.priority-input:checked + label {
+  background-color: rgb(131, 206, 152);
+}

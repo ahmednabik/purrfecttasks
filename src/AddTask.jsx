@@ -2,8 +2,37 @@ import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { QuestionMarkCircleIcon } from "@heroicons/react/20/solid";
 import SelectDate from "./SelectDate";
+import { v4 as uuidv4 } from "uuid";
+import dayjs from "dayjs";
 
-export default function AddTask({ open, setOpen }) {
+export default function AddTask({ open, setOpen, todos, setTodos, projects }) {
+  const [date, setDate] = useState(dayjs());
+  const [title, setTitle] = useState(" ");
+  const [description, setDescription] = useState(" ");
+  const [project, setProject] = useState("Personal");
+  const [labels, setLabels] = useState("Personal");
+  const [priority, setPriority] = useState(1);
+  const [comments, setComments] = useState("No additional comments.");
+
+  function handleTodoSubmit(e) {
+    e.preventDefault();
+    const newTodo = {
+      id: uuidv4(),
+      title: title,
+      description: description,
+      due: date,
+      project: project,
+      labels: [labels],
+      priority: priority,
+      comments: comments,
+    };
+    console.log([...todos, newTodo]);
+    setTodos([...todos, newTodo]);
+    setTitle(" ");
+    setDescription(" ");
+    setDate(" ");
+    setOpen(false);
+  }
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={setOpen}>
@@ -22,7 +51,10 @@ export default function AddTask({ open, setOpen }) {
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                  <form className="flex h-full flex-col divide-y divide-gray-200 bg-white shadow-xl">
+                  <form
+                    className="flex h-full flex-col divide-y divide-gray-200 bg-white shadow-xl"
+                    onSubmit={(e) => handleTodoSubmit(e)}
+                  >
                     <div className="h-0 flex-1 overflow-y-auto">
                       <div className="bg-purr-primary-color py-6 px-4 sm:px-6">
                         <div className="flex items-center justify-between">
@@ -44,16 +76,18 @@ export default function AddTask({ open, setOpen }) {
                           <div className="space-y-6 pt-6 pb-5">
                             <div>
                               <label
-                                htmlFor="project-name"
+                                htmlFor="task-title"
                                 className="block text-sm font-medium text-gray-900"
                               >
                                 Title
                               </label>
                               <div className="mt-1">
                                 <input
+                                  value={title}
+                                  onChange={(e) => setTitle(e.target.value)}
                                   type="text"
-                                  name="project-name"
-                                  id="project-name"
+                                  name="task-title"
+                                  id="task-title"
                                   className="block w-full rounded-md border-gray-300 shadow-sm focus:border-purr-primary-color focus:ring-purr-primary-color sm:text-sm"
                                 />
                               </div>
@@ -67,16 +101,81 @@ export default function AddTask({ open, setOpen }) {
                               </label>
                               <div className="mt-1">
                                 <textarea
+                                  value={description}
+                                  onChange={(e) =>
+                                    setDescription(e.target.value)
+                                  }
                                   id="description"
                                   name="description"
                                   rows={4}
                                   className="block w-full rounded-md border-gray-300 shadow-sm  focus:border-purr-primary-color focus:ring-purr-primary-color sm:text-sm"
-                                  defaultValue={""}
                                 />
                               </div>
                             </div>
+                            <div className="h-10 flex justify-start items-center mt-4 gap-5">
+                              <input
+                                type="radio"
+                                value={1}
+                                name="priority"
+                                id="priority-1"
+                                onChange={(e) => setPriority(e.target.value)}
+                                className="hidden priority-input"
+                              />
+                              <label
+                                htmlFor="priority-1"
+                                className="cursor-pointer bg-orange-200 px-2 py-1 rounded-md text-sm"
+                              >
+                                Priority 1
+                              </label>
+                              <input
+                                type="radio"
+                                value={2}
+                                name="priority"
+                                id="priority-2"
+                                onChange={(e) => setPriority(e.target.value)}
+                                className="hidden priority-input"
+                              />
+
+                              <label
+                                htmlFor="priority-2"
+                                className="cursor-pointer bg-orange-200 px-2 py-1 rounded-md text-sm"
+                              >
+                                Priority 2
+                              </label>
+                              <input
+                                type="radio"
+                                value={3}
+                                name="priority"
+                                id="priority-3"
+                                onChange={(e) => setPriority(e.target.value)}
+                                className="hidden priority-input"
+                              />
+                              <label
+                                htmlFor="priority-3"
+                                className="cursor-pointer bg-orange-200 px-2 py-1 rounded-md text-sm"
+                              >
+                                Priority 3
+                              </label>
+                            </div>
+                            <div className="labels">
+                              <label htmlFor="dropdown">
+                                Assign to project:
+                              </label>
+                              <select
+                                id="dropdown"
+                                onChange={(e) => {
+                                  setProject(e.target.value);
+                                }}
+                              >
+                                {projects.map((project) => (
+                                  <option key={project.id} value={project.name}>
+                                    {project.name}
+                                  </option>
+                                ))}
+                              </select>
+                            </div>
                             <div className="mt-2">
-                              <SelectDate />
+                              <SelectDate setDate={setDate} />
                             </div>
                           </div>
                           <div className="pt-4 pb-6">

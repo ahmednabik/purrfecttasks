@@ -26,7 +26,7 @@ function App() {
       due: "2023-11-25",
       project: "todo project",
       labels: ["programming, personal"],
-      priority: 2,
+      priority: "2",
       comments: "",
     },
     {
@@ -41,21 +41,37 @@ function App() {
     {
       id: 4,
       title: "Implement level 1 logic",
-      due: "2023-12-30",
+      due: "Tue Oct 31 2023 00:00:00 GMT+0500 (Pakistan Standard Time)",
       project: "todo project",
       labels: ["programming, personal"],
       priority: 3,
       comments: "",
     },
   ]);
-  console.log(dayjs().format("MMM D, YYYY"));
+  const [projects, setProjects] = useState([
+    { id: 1, name: "Fitness", href: "#", current: false },
+    { id: 2, name: "Relationships", href: "#", current: false },
+    { id: 3, name: "Groceries", href: "#", current: false },
+    { id: 4, name: "Appointments", href: "#", current: false },
+  ]);
   return (
     <div className="bg-purr-background-color">
-      <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+      <Sidebar
+        sidebarOpen={sidebarOpen}
+        setSidebarOpen={setSidebarOpen}
+        projects={projects}
+        setProjects={setProjects}
+      />
       <div className="flex flex-1 flex-col md:pl-64">
         <Searchbar setSidebarOpen={setSidebarOpen} />
         <Container todos={todos} setTodos={setTodos} />
-        <AddTask open={open} setOpen={setOpen} setTodos={setTodos} />
+        <AddTask
+          open={open}
+          setOpen={setOpen}
+          todos={todos}
+          setTodos={setTodos}
+          projects={projects}
+        />
         <button
           className="fixed right-10 bottom-10 w-16 h-16 rounded-full bg-purr-primary-color drop-shadow-xl hover:scale-105 text-white"
           onClick={() => setOpen(!open)}

@@ -47,10 +47,10 @@ const options = {
   },
 };
 
-export default function SelectDate() {
+export default function SelectDate({ setDate }) {
   const [show, setShow] = useState(false);
   const handleChange = (selectedDate) => {
-    console.log(selectedDate);
+    setDate(selectedDate);
   };
   const handleClose = (state) => {
     setShow(state);
