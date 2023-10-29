@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import { Bars3BottomLeftIcon, BellIcon } from "@heroicons/react/24/outline";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import { Menu, Transition } from "@headlessui/react";
-import profileImage from "./assets/profile-img.jepg";
+import profileImage from "./assets/profile-img.jpeg";
 const userNavigation = [
   { name: "Your Profile", href: "#" },
   { name: "Settings", href: "#" },
