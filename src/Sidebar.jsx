@@ -1,5 +1,6 @@
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
+import logo from "./assets/logo2.png";
 import {
   XMarkIcon,
   CalendarIcon,
@@ -89,11 +90,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen, projects, setProjects }) {
                   </div>
                 </Transition.Child>
                 <div className="flex flex-shrink-0 items-center px-4 mb-4">
-                  <img
-                    className="h-12 w-auto"
-                    src="public/logo2.png"
-                    alt="PurrfectTasks"
-                  />
+                  <img className="h-12 w-auto" src={logo} alt="PurrfectTasks" />
                 </div>
                 <div className="mt-5 h-0 flex-1 overflow-y-auto">
                   <nav className="space-y-1 px-2">
@@ -136,11 +133,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen, projects, setProjects }) {
       <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
         <div className="flex flex-grow flex-col overflow-y-auto border-r border-gray-200 bg-white pt-5">
           <div className="flex flex-shrink-0 items-center px-4 mb-4">
-            <img
-              className="h-12 w-auto"
-              src="public/logo2.png"
-              alt="Your Company"
-            />
+            <img className="h-12 w-auto" src={logo} alt="Your Company" />
           </div>
           <div className="mt-5 flex flex-grow flex-col">
             <nav className="mb-6 space-y-1 px-2 pb-4">

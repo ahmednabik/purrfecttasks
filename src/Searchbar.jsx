@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import { Bars3BottomLeftIcon, BellIcon } from "@heroicons/react/24/outline";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import { Menu, Transition } from "@headlessui/react";
+import profileImage from "./assets/profile-img.jepg";
 const userNavigation = [
   { name: "Your Profile", href: "#" },
   { name: "Settings", href: "#" },
@@ -59,7 +60,7 @@ function Searchbar({ setSidebarOpen }) {
                   <span className="sr-only">Open user menu</span>
                   <img
                     className="h-8 w-8 rounded-full"
-                    src="public/profile-img.jpeg"
+                    src={profileImage}
                     alt=""
                   />
                 </Menu.Button>
