@@ -32,7 +32,7 @@ function App() {
     {
       id: 3,
       title: "Install dependencies & configure tailwind",
-      due: "2023-11-30",
+      due: "2023-10-30",
       project: "todo project",
       labels: ["programming, personal"],
       priority: 1,

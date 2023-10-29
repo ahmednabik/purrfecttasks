@@ -87,7 +87,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                 <div className="flex flex-shrink-0 items-center px-4 mb-4">
                   <img
                     className="h-12 w-auto"
-                    src="src/assets/imgs/logo2.png"
+                    src="src/assets/logo2.png"
                     alt="PurrfectTasks"
                   />
                 </div>
@@ -134,7 +134,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
           <div className="flex flex-shrink-0 items-center px-4 mb-4">
             <img
               className="h-12 w-auto"
-              src="src/assets/imgs/logo2.png"
+              src="src/assets/logo2.png"
               alt="Your Company"
             />
           </div>

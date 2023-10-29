@@ -1,50 +1,7 @@
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { XMarkIcon } from "@heroicons/react/24/outline";
-import Datepicker from "flowbite-datepicker/Datepicker";
-import {
-  LinkIcon,
-  PlusIcon,
-  QuestionMarkCircleIcon,
-} from "@heroicons/react/20/solid";
-
-// const team = [
-//   {
-//     name: "Tom Cook",
-//     email: "tom.cook@example.com",
-//     href: "#",
-//     imageUrl:
-//       "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-//   },
-//   {
-//     name: "Whitney Francis",
-//     email: "whitney.francis@example.com",
-//     href: "#",
-//     imageUrl:
-//       "https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-//   },
-//   {
-//     name: "Leonard Krasner",
-//     email: "leonard.krasner@example.com",
-//     href: "#",
-//     imageUrl:
-//       "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-//   },
-//   {
-//     name: "Floyd Miles",
-//     email: "floyd.miles@example.com",
-//     href: "#",
-//     imageUrl:
-//       "https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-//   },
-//   {
-//     name: "Emily Selman",
-//     email: "emily.selman@example.com",
-//     href: "#",
-//     imageUrl:
-//       "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-//   },
-// ];
+import { QuestionMarkCircleIcon } from "@heroicons/react/20/solid";
+import SelectDate from "./SelectDate";
 
 export default function AddTask({ open, setOpen }) {
   return (
@@ -118,117 +75,9 @@ export default function AddTask({ open, setOpen }) {
                                 />
                               </div>
                             </div>
-                            <fieldset>
-                              <legend className="text-sm font-medium text-gray-900">
-                                Due Date
-                              </legend>
-                              <div className="mt-2 space-y-5">
-                                <div className="relative flex items-start">
-                                  <div className="absolute flex h-5 items-center">
-                                    <input
-                                      id="privacy-public"
-                                      name="privacy"
-                                      aria-describedby="privacy-public-description"
-                                      type="radio"
-                                      className="h-4 w-4 border-gray-300 text-purr-primary-color focus:ring-purr-primary-color"
-                                      defaultChecked
-                                    />
-                                  </div>
-                                  <div className="pl-7 text-sm">
-                                    <label
-                                      htmlFor="privacy-public"
-                                      className="font-medium text-gray-900"
-                                    >
-                                      Today
-                                    </label>
-                                    <p
-                                      id="privacy-public-description"
-                                      className="text-gray-500"
-                                    >
-                                      Task deadline will be set to 11:59 PM
-                                      local time.
-                                    </p>
-                                  </div>
-                                </div>
-                                <div>
-                                  <div className="relative flex items-start">
-                                    <div className="absolute flex h-5 items-center">
-                                      <input
-                                        id="privacy-private-to-project"
-                                        name="privacy"
-                                        aria-describedby="privacy-private-to-project-description"
-                                        type="radio"
-                                        className="h-4 w-4 border-gray-300 text-purr-primary-color focus:ring-purr-primary-color"
-                                      />
-                                    </div>
-                                    <div className="pl-7 text-sm">
-                                      <label
-                                        htmlFor="privacy-private-to-project"
-                                        className="font-medium text-gray-900"
-                                      >
-                                        This Week
-                                      </label>
-                                      <p
-                                        id="privacy-private-to-project-description"
-                                        className="text-gray-500"
-                                      >
-                                        Task deadline will be set to this Friday
-                                        11:59 PM local time.
-                                      </p>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div>
-                                  <div className="relative flex items-start">
-                                    <div className="absolute flex h-5 items-center">
-                                      <input
-                                        id="privacy-private"
-                                        name="privacy"
-                                        aria-describedby="privacy-private-to-project-description"
-                                        type="radio"
-                                        className="h-4 w-4 border-gray-300 text-purr-primary-color focus:ring-purr-primary-color"
-                                      />
-                                    </div>
-                                    <div className="pl-7 text-sm">
-                                      <label
-                                        htmlFor="privacy-private"
-                                        className="font-medium text-gray-900"
-                                      >
-                                        Custom Date
-                                      </label>
-
-                                      <div class="relative max-w-sm">
-                                        <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                          <svg
-                                            className="w-4 h-4 text-gray-500 dark:text-gray-400"
-                                            aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            fill="currentColor"
-                                            viewBox="0 0 20 20"
-                                          >
-                                            <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                                          </svg>
-                                        </div>
-                                        <input
-                                          datepicker
-                                          datepicker-autohide
-                                          type="text"
-                                          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                          placeholder="Select date"
-                                        />
-                                      </div>
-
-                                      {/* <p
-                                        id="privacy-private-description"
-                                        className="text-gray-500"
-                                      >
-                                        Set a custom deadline.
-                                      </p> */}
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </fieldset>
+                            <div className="mt-2">
+                              <SelectDate />
+                            </div>
                           </div>
                           <div className="pt-4 pb-6">
                             <div className="mt-4 flex text-sm">

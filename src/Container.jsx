@@ -1,5 +1,5 @@
 import React from "react";
-import TaskList from "./assets/imgs/TaskList";
+import TaskList from "./TaskList";
 function Container({ todos, setTodos }) {
   return (
     <div className="flex justify-center">

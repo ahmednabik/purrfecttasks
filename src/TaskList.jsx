@@ -9,9 +9,11 @@ export default function TaskList({ todo }) {
       : "border-gray-500 bg-gray-100";
 
   const dueDate =
-    dayjs(todo.due).format("DD") === dayjs().format("DD")
+    dayjs(todo.due).format("DD") === dayjs().format("DD") &&
+    dayjs(todo.due).format("MM") === dayjs().format("MM")
       ? "Today"
-      : dayjs(todo.due).format("DD") === dayjs().add(1, "day").format("DD")
+      : dayjs(todo.due).format("DD") === dayjs().add(1, "day").format("DD") &&
+        dayjs(todo.due).format("MM") === dayjs().add(1, "day").format("MM")
       ? "Tomorrow"
       : dayjs(todo.due).format("MMM D, YYYY");
 
