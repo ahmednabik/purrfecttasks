@@ -31,7 +31,7 @@ export default function AddTask({ open, setOpen, todos, setTodos, projects }) {
     setTodos([...todos, newTodo]);
     setTitle(" ");
     setDescription(" ");
-    setDate(" ");
+    setDate("");
     setOpen(false);
   }
   return (
@@ -126,7 +126,7 @@ export default function AddTask({ open, setOpen, todos, setTodos, projects }) {
                                 htmlFor="priority-1"
                                 className="cursor-pointer bg-orange-200 px-2 py-1 rounded-md text-sm"
                               >
-                                Priority 1
+                                Low
                               </label>
                               <input
                                 type="radio"
@@ -141,7 +141,7 @@ export default function AddTask({ open, setOpen, todos, setTodos, projects }) {
                                 htmlFor="priority-2"
                                 className="cursor-pointer bg-orange-200 px-2 py-1 rounded-md text-sm"
                               >
-                                Priority 2
+                                Medium
                               </label>
                               <input
                                 type="radio"
@@ -155,7 +155,7 @@ export default function AddTask({ open, setOpen, todos, setTodos, projects }) {
                                 htmlFor="priority-3"
                                 className="cursor-pointer bg-orange-200 px-2 py-1 rounded-md text-sm"
                               >
-                                Priority 3
+                                High
                               </label>
                             </div>
                             <div className="labels">

@@ -2,9 +2,9 @@ import dayjs from "dayjs";
 import { ClockIcon, TagIcon } from "@heroicons/react/24/outline";
 export default function TaskList({ todo }) {
   const priorityClass =
-    todo.priority === "1"
+    todo.priority === 1
       ? "border-red-600 bg-red-100"
-      : todo.priority === "2"
+      : todo.priority === 2
       ? "border-orange-500 bg-orange-100"
       : "border-gray-500 bg-gray-100";
 
@@ -41,7 +41,13 @@ export default function TaskList({ todo }) {
               <span className="text-gray-500 text-sm">
                 <ClockIcon className="w-4 -mt-1 inline" /> {dueDate}
               </span>
-              <span className="text-gray-400 text-xs ml-6 ">
+              <span
+                className={
+                  !todo.labels.length
+                    ? "hidden text-gray-400 text-xs ml-6"
+                    : "text-gray-400 text-xs ml-6"
+                }
+              >
                 <TagIcon className="w-4 inline" />{" "}
                 {todo.labels.map((label) => label)}
               </span>

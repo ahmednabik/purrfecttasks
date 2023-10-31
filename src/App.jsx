@@ -1,11 +1,12 @@
 import "./App.css";
 import Searchbar from "./Searchbar";
-import Container from "./Container";
+import DisplayTasks from "./DisplayTasks";
 import Sidebar from "./Sidebar";
 import { useState } from "react";
 import AddTask from "./AddTask";
 import { PlusIcon } from "@heroicons/react/20/solid";
 import dayjs from "dayjs";
+import AddTaskInline from "./AddTaskInline";
 
 function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -18,7 +19,7 @@ function App() {
       project: "todo project",
       labels: ["programming, personal"],
       priority: 1,
-      comments: "",
+      notes: "",
       completed: false,
     },
     {
@@ -28,7 +29,7 @@ function App() {
       project: "todo project",
       labels: ["programming, personal"],
       priority: "2",
-      comments: "",
+      notes: "",
       completed: false,
     },
     {
@@ -38,7 +39,7 @@ function App() {
       project: "todo project",
       labels: ["programming, personal"],
       priority: 1,
-      comments: "",
+      notes: "",
       completed: false,
     },
     {
@@ -48,7 +49,7 @@ function App() {
       project: "todo project",
       labels: ["programming, personal"],
       priority: 3,
-      comments: "",
+      notes: "",
       completed: false,
     },
   ]);
@@ -58,6 +59,13 @@ function App() {
     { id: 3, name: "Groceries", href: "#", current: false },
     { id: 4, name: "Appointments", href: "#", current: false },
   ]);
+
+  const [labels, setLabels] = useState([
+    "coding",
+    "wedding",
+    "blogging",
+    "design",
+  ]);
   return (
     <div className="bg-purr-background-color">
       <Sidebar
@@ -65,10 +73,20 @@ function App() {
         setSidebarOpen={setSidebarOpen}
         projects={projects}
         setProjects={setProjects}
+        labels={labels}
+        setLabels={setLabels}
       />
       <div className="flex flex-1 flex-col md:pl-64">
         <Searchbar setSidebarOpen={setSidebarOpen} />
-        <Container todos={todos} setTodos={setTodos} />
+        <DisplayTasks
+          todos={todos}
+          setTodos={setTodos}
+          open={open}
+          setOpen={setOpen}
+          projects={projects}
+          labels={labels}
+        />
+
         <AddTask
           open={open}
           setOpen={setOpen}
@@ -76,12 +94,6 @@ function App() {
           setTodos={setTodos}
           projects={projects}
         />
-        <button
-          className="fixed right-10 bottom-10 w-16 h-16 rounded-full bg-purr-primary-color drop-shadow-xl hover:scale-105 text-white"
-          onClick={() => setOpen(!open)}
-        >
-          <PlusIcon />
-        </button>
       </div>
     </div>
   );

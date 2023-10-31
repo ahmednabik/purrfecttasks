@@ -1,6 +1,17 @@
 import React from "react";
 import TaskList from "./TaskList";
-function Container({ todos, setTodos }) {
+import AddTaskInline from "./AddTaskInline";
+import { Menu } from "@headlessui/react";
+import EditTask from "./EditTask";
+function DisplayTasks({
+  todos,
+  setTodos,
+  open,
+  setOpen,
+  projects,
+  labels,
+  setLabels,
+}) {
   return (
     <div className="flex justify-center">
       <main className="max-w-6xl flex-1">
@@ -9,7 +20,6 @@ function Container({ todos, setTodos }) {
             <h1 className="text-2xl ml-4 font-semibold text-gray-900">Inbox</h1>
           </div>
           <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
-            {/* Replace with your content */}
             <div className="py-4">
               <div className="h-96 rounded-lg">
                 <ul>
@@ -21,9 +31,16 @@ function Container({ todos, setTodos }) {
                     );
                   })}
                 </ul>
+                <AddTaskInline
+                  open={open}
+                  setOpen={setOpen}
+                  todos={todos}
+                  setTodos={setTodos}
+                  projects={projects}
+                  labels={labels}
+                />
               </div>
             </div>
-            {/* /End replace */}
           </div>
         </div>
       </main>
@@ -31,4 +48,4 @@ function Container({ todos, setTodos }) {
   );
 }
 
-export default Container;
+export default DisplayTasks;
